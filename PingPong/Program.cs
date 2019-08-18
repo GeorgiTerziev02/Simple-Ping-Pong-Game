@@ -18,7 +18,7 @@ namespace PingPong
 
         static int firstPlayerScore = 0;
         static int secondPlayerScore = 0;
-        //TODO: Add difficulty int difficulty = 75;
+        static int difficulty = 75;
 
         static Random randomGenerator = new Random();
 
@@ -74,6 +74,8 @@ namespace PingPong
                 ballDirectionRight = false;
                 ballDirectionUp = true;
                 firstPlayerScore++;
+                IncreaseDifficulty();
+
                 string winner = "First player wins!";
                 Console.SetCursorPosition(Console.WindowWidth / 2 - winner.Length / 2, Console.WindowHeight / 2);
                 Console.WriteLine(winner);
@@ -130,6 +132,14 @@ namespace PingPong
             }
         }
 
+        static void IncreaseDifficulty()
+        {
+            if (difficulty < 99)
+            {
+                difficulty++;
+            }
+        }
+
         static void SecondPlayerAIMove()
         {
             int randomNumber = randomGenerator.Next(1, 101);
@@ -143,7 +153,7 @@ namespace PingPong
             //    MoveSecondPlayerDown();
             //}
 
-            if (randomNumber <= 100)
+            if (randomNumber <= difficulty)
             {
                 if (ballDirectionUp)
                 {
